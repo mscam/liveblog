@@ -12,6 +12,11 @@
             };
             var self = this;
 
+            //no of posts added with scheduled updates
+            self.addedUpdates = 0;
+            //no of pages added by infinite scroll or "load more" button
+            self.pagesLoaded = 0;
+
             /**
              * Represent a page of posts
              * @param {array} [posts=[]] - a list of post to initialize the page
@@ -95,7 +100,8 @@
                     });
                 }
                 return promise.then(function() {
-                    return loadPage(self.pages.length + 1);
+                    //return loadPage(self.pages.length + 1);
+                    return loadPage(++ self.pagesLoaded);
                 });
             }
 
@@ -144,7 +150,24 @@
                     if (should_apply_updates) {
                         applyUpdates(updates._items);
                     }
+                    newItemsNo(updates._items);
                     return updates;
+                });
+            }
+
+            /**
+             * count the number of new items 
+             * to help the pagination process
+             */
+            function newItemsNo(updates) {
+                updates.forEach(function(post) {
+                    var existing_post_indexes = getPostPageIndexes(post);
+                    if (!angular.isDefined(existing_post_indexes)) {
+                        // post doesn't exist in the list
+                        if (!post.deleted && post.post_status === 'open' && post.sticky === sticky) {
+                            self.addedUpdates ++;
+                        }
+                    }
                 });
             }
 
@@ -236,10 +259,10 @@
              */
             function loadPage(page) {
                 page = page || self.pages.length;
+                console.log('page is ', page);
                 return retrievePage(page).then(function(posts) {
                     createPagesWithPosts(posts._items, false);
                     return posts;
-
                 });
             }
 
