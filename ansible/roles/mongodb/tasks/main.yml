@@ -1,0 +1,9 @@
+---
+
+- name: Install MongoDB
+  apt: name={{ item }} state=installed state=present
+  with_items:
+    - mongodb
+
+- name: Start and enable MongoDB
+  service: name=mongodb enabled=yes state=started

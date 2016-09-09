@@ -1,0 +1,26 @@
+---
+
+- name: Install common server packages
+  apt: name={{ item }} state=installed
+  with_items:
+    - build-essential
+    - htop
+    - vim
+    - git
+    - unzip
+    - curl
+    - libffi-dev
+    - libtiff5-dev
+    - libjpeg8-dev
+    - zlib1g-dev
+    - libfreetype6-dev
+    - liblcms2-dev
+    - libwebp-dev
+    - libfontconfig
+    - nodejs
+    - npm
+
+- name: Install Supervisor
+  apt: name={{ item }} state=installed
+  with_items:
+    - supervisor

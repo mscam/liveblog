@@ -1,0 +1,5 @@
+- name: Restart Celery
+  supervisorctl: name=celery state=restarted
+
+- name: Stop Celery
+  supervisorctl: name=celery state=stopped

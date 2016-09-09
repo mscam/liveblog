@@ -1,0 +1,29 @@
+---
+
+- name: Install common nodejs packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - nodejs
+
+- name: Update npm to latest version
+  npm: name=npm state=latest global=yes
+
+- name: Install Grunt and Bower globally
+  npm: name={{ item }} state=latest global=yes
+  with_items:
+    - grunt-cli
+    - bower
+
+- name: Create nodejs symlink
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+
+- name: Install npm packages for liveblog project
+  npm: path={{ client_path }} state=present
+
+- name: Run bower install for liveblog project
+  bower: path={{ client_path }} state=present offline=yes
+
+- name: Run grunt build for liveblog project
+  command: grunt build
+  args:
+    chdir: "{{ client_path }}"

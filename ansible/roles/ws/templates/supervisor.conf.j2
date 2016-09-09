@@ -1,0 +1,9 @@
+[program:ws]
+command={{ virtualenv_path }}/bin/python3 -u {{application_path}}/ws.py
+directory={{ application_path }}
+environment=PATH="{{ virtualenv_path }}/bin"
+user={{ user_name }}
+group={{ user_name }}
+autorestart=true
+autostart={{ autostart | bool | lower }}
+redirect_stderr=true

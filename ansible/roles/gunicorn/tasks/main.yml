@@ -1,0 +1,16 @@
+---
+
+
+- name: Create the Supervisor config file for Gunicorn
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/gunicorn.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name=gunicorn state=present
+
+- name: Start Gunicorn with supervisord
+  supervisorctl: name=gunicorn state=restarted
+  when: enabled
+
+- name: Stop Gunicorn for local dev
+  supervisorctl: name=gunicorn state=stopped
+  when: not enabled

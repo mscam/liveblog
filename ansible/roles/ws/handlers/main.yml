@@ -1,0 +1,5 @@
+- name: Restart Websocket Service
+  supervisorctl: name=ws state=restarted
+
+- name: Stop Websocket Service
+  supervisorctl: name=ws state=stopped

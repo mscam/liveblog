@@ -1,0 +1,9 @@
+[program:celerybeat]
+command={{ virtualenv_path }}/bin/celery -A worker beat --pid=
+directory={{ application_path }}
+environment=PATH="{{ virtualenv_path }}/bin"
+user={{ user_name }}
+group={{ user_name }}
+autorestart=true
+autostart={{ autostart | bool | lower }}
+redirect_stderr=true

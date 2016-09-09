@@ -1,0 +1,13 @@
+---
+
+# project name
+project_name: liveblog
+
+# home path
+home_path: /home/{{ user_name }}
+
+# project path
+project_path: "/opt/superdesk"
+
+# flask app path
+application_path: "{{ project_path }}/server"

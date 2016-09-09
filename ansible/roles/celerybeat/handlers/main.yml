@@ -1,0 +1,5 @@
+- name: Restart Celerybeat
+  supervisorctl: name=celerybeat state=restarted
+
+- name: Stop Celerybeat
+  supervisorctl: name=celerybeat state=stopped

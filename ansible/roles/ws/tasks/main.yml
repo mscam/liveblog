@@ -1,0 +1,16 @@
+---
+
+
+- name: Create the Supervisor config file for Websocket Service
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/ws.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name=ws state=present
+
+- name: Start Websocket Service with supervisord
+  supervisorctl: name=ws state=restarted
+  when: enabled
+
+- name: Stop Websocket Service for local dev
+  supervisorctl: name=ws state=stopped
+  when: not enabled

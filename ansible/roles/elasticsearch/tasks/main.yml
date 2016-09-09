@@ -1,0 +1,17 @@
+---
+
+- name: Add Elasicsearch Repository
+  apt_repository: repo='deb https://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present
+
+- name: Update packages cache
+  apt: update_cache=yes
+
+- name: Install Elasticsearch
+  apt: name={{ item }} state=installed install_recommends=no state=present force=yes
+  with_items:
+    - elasticsearch
+    - openjdk-7-jre
+
+- name: Start and enable Elasticsearch
+  service: name=elasticsearch enabled=yes state=started
+

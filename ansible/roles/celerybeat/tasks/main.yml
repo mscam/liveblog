@@ -1,0 +1,16 @@
+---
+
+
+- name: Create the Supervisor config file for Celerybeat
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/celerybeat.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name=celerybeat state=present
+
+- name: Start Celerybeat with supervisord
+  supervisorctl: name=celerybeat state=restarted
+  when: enabled
+
+- name: Stop Celerybeat for local dev
+  supervisorctl: name=celerybeat state=stopped
+  when: not enabled

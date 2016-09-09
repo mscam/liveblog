@@ -1,0 +1,16 @@
+---
+
+
+- name: Create the Supervisor config file for Celery
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/celery.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name=celery state=present
+
+- name: Start Celery with supervisord
+  supervisorctl: name=celery state=restarted
+  when: enabled
+
+- name: Stop Celery for local dev
+  supervisorctl: name=celery state=stopped
+  when: not enabled
