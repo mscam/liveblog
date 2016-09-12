@@ -23,13 +23,13 @@ Vagrant.configure(2) do |config|
     vf.gui = false
     vf.vmx['displayname'] = "liveblog"
     vf.vmx["memsize"] = "1024"
-    vf.vmx["numvcpus"] = "2"
+    vf.vmx["numvcpus"] = "1"
   end
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.name = "liveblog"
     vb.memory = "1024"
-    vb.cpus = 2
+    vb.cpus = 1
   end
 end
