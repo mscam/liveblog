@@ -8,8 +8,13 @@
 - name: Update npm to latest version
   npm: name=npm state=latest global=yes
 
+- name: Set npm global path prefix to /usr/local
+  shell: npm config set prefix /usr/local
+  args:
+    executable: /bin/bash
+
 - name: Install Grunt and Bower globally
-  npm: name={{ item }} state=latest global=yes
+  npm: name={{ item }} state=present global=yes
   with_items:
     - grunt-cli
     - bower

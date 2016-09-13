@@ -12,6 +12,7 @@
     - mongodb
     - elasticsearch
     - python
+    - nodejs
     - { role: gunicorn, autostart: true, enabled: true }
     - { role: ws, autostart: true, enabled: true }
     - { role: celery, autostart: true, enabled: true }
