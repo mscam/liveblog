@@ -1,0 +1,16 @@
+---
+
+
+- name: Create the Supervisor config file for JS Client
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/client.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name=client state=present
+
+- name: Start JS Client with supervisord
+  supervisorctl: name=client state=restarted
+  when: enabled
+
+- name: Stop JS Client for local dev
+  supervisorctl: name=client state=stopped
+  when: not enabled

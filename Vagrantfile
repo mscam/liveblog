@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder ".", "/opt/superdesk"
 
   # config.vm.network "forwarded_port", guest: 8080, host:8080
-  # config.vm.network "forwarded_port", guest: 9000, host:9000
+  config.vm.network "forwarded_port", guest: 9000, host:9000
   config.vm.network "forwarded_port", guest: 5000, host:5000
   config.vm.network "forwarded_port", guest: 5100, host:5100
 
@@ -22,14 +22,14 @@ Vagrant.configure(2) do |config|
   config.vm.provider "vmware_fusion" do |vf|
     vf.gui = false
     vf.vmx['displayname'] = "liveblog"
-    vf.vmx["memsize"] = "1024"
+    vf.vmx["memsize"] = "2048"
     vf.vmx["numvcpus"] = "1"
   end
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.name = "liveblog"
-    vb.memory = "1024"
+    vb.memory = "2048"
     vb.cpus = 1
   end
 end

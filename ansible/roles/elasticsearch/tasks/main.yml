@@ -4,7 +4,7 @@
   apt: name=openjdk-7-jre state=installed install_recommends=no state=present force=yes
 
 - name: Install Elasticsearch
-  apt: deb=https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-{{ elasticsearch_version }}.deb
+  apt: deb={{ elasticsearch_deb_url }} state=present
 
 - name: Start and enable Elasticsearch
   service: name=elasticsearch enabled=yes state=started

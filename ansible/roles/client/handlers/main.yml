@@ -1,0 +1,5 @@
+- name: Restart JS Client
+  supervisorctl: name=celery state=restarted
+
+- name: Stop JS Client
+  supervisorctl: name=celery state=stopped

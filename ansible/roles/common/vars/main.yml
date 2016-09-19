@@ -11,3 +11,6 @@ project_path: "/opt/superdesk"
 
 # flask app path
 application_path: "{{ project_path }}/server"
+
+# client app path
+client_path: "{{ project_path }}/client"

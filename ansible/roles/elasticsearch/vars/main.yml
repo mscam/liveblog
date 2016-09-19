@@ -1,4 +1,4 @@
 ---
 
 elasticsearch_version: "1.5.2"
-
+elasticsearch_deb_url: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-{{ elasticsearch_version }}.deb

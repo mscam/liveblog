@@ -1,0 +1,8 @@
+[program:client]
+command=grunt server
+directory={{ client_path }}
+user={{ user_name }}
+group={{ user_name }}
+autorestart=true
+autostart={{ autostart | bool | lower }}
+redirect_stderr=true

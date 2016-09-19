@@ -13,6 +13,7 @@
     - elasticsearch
     - python
     - nodejs
+    - { role: client, autostart: true, enabled: true }
     - { role: gunicorn, autostart: true, enabled: true }
     - { role: ws, autostart: true, enabled: true }
     - { role: celery, autostart: true, enabled: true }
