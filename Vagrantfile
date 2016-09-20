@@ -6,8 +6,12 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/opt/superdesk"
 
-  # config.vm.network "forwarded_port", guest: 8080, host:8080
+
+  # Grunt server + Vagrant
+  # https://coderwall.com/p/cyi5iq/grunt-server-vagrant-port-forwarding-ips
   config.vm.network "forwarded_port", guest: 9000, host:9000
+  config.vm.network "forwarded_port", guest: 35729, host: 35729
+
   config.vm.network "forwarded_port", guest: 5000, host:5000
   config.vm.network "forwarded_port", guest: 5100, host:5100
 
