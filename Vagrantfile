@@ -1,11 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+VAGRANT_IP = "192.168.33.11"
+
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.ssh.insert_key = false
-  config.vm.synced_folder ".", "/opt/superdesk"
-
+  config.vm.synced_folder ".", "/opt/superdesk", 
+    :nfs => true,
+    :mount_options => ['actimeo=2']
+  config.vm.network :private_network, ip: VAGRANT_IP
 
   # Grunt server + Vagrant
   # https://coderwall.com/p/cyi5iq/grunt-server-vagrant-port-forwarding-ips
